@@ -36,7 +36,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube-Server') {
-                    sh '''
+                    sh 
                         npx sonarqube-scanner \
                           -Dsonar.projectKey=SP-Cakes-Site \
                           -Dsonar.projectName="SP Cakes & Delight" \
@@ -45,7 +45,6 @@ pipeline {
                           -Dsonar.test.inclusions="**/*.test.js" \
                           -Dsonar.exclusions="**/*.test.js,**/node_modules/**" \
                           -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-                    '''
                 }
             }
         }
@@ -60,14 +59,12 @@ pipeline {
 
         stage('Trivy FileSystem Scan') {
             steps {
-                sh '''
+                sh 
                     trivy fs \
                       --scanners vuln,secret,misconfig \
                       --severity HIGH,CRITICAL \
                       --exit-code 0 \
                       --format table \
-                      .
-                '''
             }
         }
 
