@@ -17,7 +17,7 @@ pipeline {
 
         stage('ESLint Analysis') {
             steps {
-                sh 'npx eslint src '
+                sh 'npm eslint src'
             }
         }
 
