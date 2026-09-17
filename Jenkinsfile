@@ -21,6 +21,14 @@ pipeline {
             }
         }
 
+        stage('Check Project Structure') {
+            steps {
+                sh 'pwd'
+                sh 'ls -la'
+                sh 'find . -maxdepth 2 -type d'
+            }
+        }
+
         stage('Run Unit Tests') {
             steps {
                 sh 'npm test'
